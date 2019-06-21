@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import './constant.dart';
 
-const colorofdiv = Color(0xFFF8F8F8);
+
 
 
 
@@ -21,7 +22,7 @@ class ReusableContainer extends StatelessWidget {
         SizedBox(
           height: 12.0,
         ),
-        Text(iconText,style: TextStyle(fontSize: 18.0,color:colorofdiv ),)
+        Text(iconText,style:klabelTextStyle)
       ],
     );
   }
