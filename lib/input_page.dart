@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import './card_content.dart';
 import './reusable_card.dart';
 import './constant.dart';
+import './results_page.dart';
 
 enum genderType { male, female }
 
@@ -228,15 +229,43 @@ class _InputPageState extends State<InputPage> {
                 ],
               ),
             ),
-            Container(
-              margin: EdgeInsets.only(top: 10.0),
-              color: kbottomContainerColor,
-              //to Fit the Entire Bottom of the Screen
-              width: double.infinity,
-              height: kbottomContainerHeight,
+            new BottomButton(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ResultsPage()),
+                );
+              },
+              buttonTitle: 'CALCULATE',
             )
           ],
         ));
+  }
+}
+
+class BottomButton extends StatelessWidget {
+  final Function onTap;
+  final String buttonTitle;
+
+  BottomButton({@required this.onTap, @required this.buttonTitle});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        child: Center(
+            child: Text(
+          buttonTitle,
+          style: kButtonTextStyle,
+        )),
+        margin: EdgeInsets.only(top: 10.0),
+        color: kbottomContainerColor,
+        //to Fit the Entire Bottom of the Screen
+        width: double.infinity,
+        height: kbottomContainerHeight,
+      ),
+    );
   }
 }
 
