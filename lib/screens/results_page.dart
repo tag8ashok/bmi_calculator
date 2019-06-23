@@ -1,9 +1,20 @@
 import 'package:bmi_calculator/constant.dart';
-import 'package:bmi_calculator/reusable_card.dart';
+import 'package:bmi_calculator/components/reusable_card.dart';
+import 'package:bmi_calculator/components/bottom_button.dart';
 import 'package:flutter/material.dart';
-import './input_page.dart';
+
 
 class ResultsPage extends StatelessWidget {
+
+  final String bmiResult;
+  final String bmiText;
+  final String interpretaion;
+
+
+  ResultsPage({@required this.bmiResult,@required this.bmiText,@required this.interpretaion});
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,9 +40,9 @@ class ResultsPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment:CrossAxisAlignment.center ,
                 children: <Widget>[
-                  Text('Normal' ,style: kResultsTextStyle,),
-                  Text('63',style: kResultsNumberStyle,),
-                  Text('Your are Below Average you need to excercise', textAlign:TextAlign.center ,style: kbottomTextTextStyle,)
+                  Text(bmiText ,style: kResultsTextStyle,),
+                  Text(bmiResult,style: kResultsNumberStyle,),
+                  Text(interpretaion, textAlign:TextAlign.center ,style: kbottomTextTextStyle,)
                 ],
               ),
             ),

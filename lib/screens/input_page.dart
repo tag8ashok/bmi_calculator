@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import './card_content.dart';
-import './reusable_card.dart';
-import './constant.dart';
+import 'package:bmi_calculator/components/card_content.dart';
+import 'package:bmi_calculator/components/reusable_card.dart';
+import 'package:bmi_calculator/components/bottom_button.dart';
+import 'package:bmi_calculator/constant.dart';
 import './results_page.dart';
+import 'package:bmi_calculator/calculator_brain.dart';
 
 enum genderType { male, female }
 
@@ -231,41 +233,23 @@ class _InputPageState extends State<InputPage> {
             ),
             new BottomButton(
               onTap: () {
+                CalculatorBrain calc =
+                    new CalculatorBrain(height: height, weight: weight);
+
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ResultsPage()),
+                  MaterialPageRoute(
+                      builder: (context) => ResultsPage(
+                            bmiResult: calc.calculateBMI(),
+                            bmiText: calc.getResults(),
+                            interpretaion: calc.getInterpretation(),
+                          )),
                 );
               },
               buttonTitle: 'CALCULATE',
             )
           ],
         ));
-  }
-}
-
-class BottomButton extends StatelessWidget {
-  final Function onTap;
-  final String buttonTitle;
-
-  BottomButton({@required this.onTap, @required this.buttonTitle});
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        child: Center(
-            child: Text(
-          buttonTitle,
-          style: kButtonTextStyle,
-        )),
-        margin: EdgeInsets.only(top: 10.0),
-        color: kbottomContainerColor,
-        //to Fit the Entire Bottom of the Screen
-        width: double.infinity,
-        height: kbottomContainerHeight,
-      ),
-    );
   }
 }
 
